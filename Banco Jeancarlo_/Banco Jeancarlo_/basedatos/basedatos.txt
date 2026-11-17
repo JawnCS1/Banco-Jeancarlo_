@@ -1,0 +1,39 @@
+-- Base de datos para el Examen 2
+create database BANCO
+go
+use BANCO
+go
+
+create table cliente
+(
+    codigo int primary key,
+    nombre varchar(50) not null,
+    edad int null,
+    saldo money
+)
+go
+
+create table cuentacliente
+(
+    codigo int primary key,
+    tipo varchar(20) not null,
+    codigocliente int foreign key references cliente(codigo)
+)
+go
+
+-- Datos de prueba para clientes
+insert into cliente (codigo, nombre, edad, saldo)
+values (100, 'Juan Perez', 30, 600),
+       (200, 'Julieta Castro', 35, 800),
+       (300, 'Bryan Ruiz', 39, 100),
+       (400, 'Jean Morera', 25, 400)
+go
+
+-- Datos de prueba para cuentas
+insert into cuentacliente (codigo, tipo, codigocliente)
+values (1, 'Ahorro', 100),
+       (2, 'Corriente', 200)
+go
+
+select * from cliente
+select * from cuentacliente
